@@ -10,73 +10,67 @@
 *
 ********************************************************************************/
 
+const legoData = require("./modules/legoSets");
+
 const express = require('express');
 const app = express();
-const port = 3000; // Choose a port number
+const port = 3000;
 
-const legoData = require('./modules/legoSets');
+// Initialized the lego set
+legoData.Initialize();
 
-// Define an async function to start the server
-async function startServer() {
-  try {
-    // Initialize the legoData module (wait for it to complete)
-    await legoData.initialize();
 
-    // Configure your routes here
+// This route simply sends back the text
+app.get('/',(reg, res)=>{
+    res.send('Assignment 2: Supachai Ruknuy - 121707228');
+});
 
-    // GET root route
-    app.get('/', (req, res) => {
-      res.send('Assignment 2: Supachai Ruknuy - 121707228');
+// This route is responsible for responding with all of the Lego sets
+app.get('/lego/sets',(reg,res) => {
+
+    //get allsets 
+    legoData.getAllsets().then(sets=>{
+        res.json(sets);
+    }).catch(error=>{
+        res.status(500).send(error); // catch teh errors
     });
 
-    // GET all Lego sets
-    app.get('/lego/sets', (req, res) => {
-      legoData
-        .getAllSets()
-        .then(sets => {
-          res.json(sets);
-        })
-        .catch(error => {
-          res.status(500).send(error); // Handle errors appropriately
-        });
+});
+
+
+// Invoking the function with a known setNum value from your data set.
+app.get('/lego/sets/num-demo',(reg,res)=>{
+
+    const setNum = '001-1'; // input value
+
+    legoData.getSetByNum(setNum).then(sets=> {
+
+        res.json(sets);
+
+    }).catch(error=>{
+
+        res.status(500).send(error); // catch the errors
     });
 
-    // GET Lego set by set_num
-    app.get('/lego/sets/num-demo', (req, res) => {
-      const setNum = '001-1'; // Replace with a known setNum value
+});
 
-      legoData
-        .getSetByNum(setNum)
-        .then(set => {
-          res.json(set);
-        })
-        .catch(error => {
-          res.status(500).send(error); // Handle errors appropriately
-        });
+
+// Invoking the function with a known theme value from your data set
+app.get('/lego/sets/theme-demo',(reg,res)=>{
+
+    const theme = 'tech'; // replace with a known theme value
+
+    legoData.getSetsByTheme(theme).then(sets=> {
+        res.json(sets);
+    }).catch(error=> {
+        res.status(500).send(error); // catch the errors
     });
 
-    // GET Lego sets by theme
-    app.get('/lego/sets/theme-demo', (req, res) => {
-      const theme = 'tech'; // Replace with a known theme value (part of the theme name in lowercase)
+});
 
-      legoData
-        .getSetsByTheme(theme)
-        .then(sets => {
-          res.json(sets);
-        })
-        .catch(error => {
-          res.status(500).send(error); // Handle errors appropriately
-        });
-    });
+// Deliver to the Express server
+app.listen(port,() => {
 
-    // Start the Express server
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-  } catch (error) {
-    console.error('Initialization failed:', error);
-  }
-}
+    console.log(`The server is running port ${port}`);
 
-// Call the async function to start the server
-startServer();
+});
