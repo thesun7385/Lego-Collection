@@ -18,7 +18,9 @@ const port = 3000;
 
 // Initialized the lego set
 legoData.Initialize();
-
+//Test set
+const allset= legoData.getAllsets();
+console.log(allset);
 
 // This route simply sends back the text
 app.get('/',(reg, res)=>{
