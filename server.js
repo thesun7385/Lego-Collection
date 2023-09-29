@@ -16,9 +16,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// Initialized the lego set
 legoData.Initialize();
-
 
 // This route simply sends back the text
 app.get('/',(reg, res)=>{
