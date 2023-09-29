@@ -1,0 +1,15 @@
+{
+  "name": "as2",
+  "version": "1.0.0",
+  "description": "web322-as2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Supachai Ruknuy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

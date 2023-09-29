@@ -1,0 +1,282 @@
+﻿[
+    {
+        "set_num": "001-1",
+        "name": "Gears",
+        "year": "1965",
+        "theme_id": "1",
+        "num_parts": "43",
+        "img_url": "https://cdn.rebrickable.com/media/sets/001-1.jpg"
+    },
+    {
+        "set_num": "6538-1",
+        "name": "Rebel Roadster",
+        "year": "1994",
+        "theme_id": "67",
+        "num_parts": "57",
+        "img_url": "https://cdn.rebrickable.com/media/sets/6538-1.jpg"
+    },
+    {
+        "set_num": "6539-1",
+        "name": "Victory Cup Racers",
+        "year": "1993",
+        "theme_id": "67",
+        "num_parts": "460",
+        "img_url": "https://cdn.rebrickable.com/media/sets/6539-1.jpg"
+    },
+    {
+        "set_num": "6540-1",
+        "name": "Pier Police",
+        "year": "1991",
+        "theme_id": "67",
+        "num_parts": "357",
+        "img_url": "https://cdn.rebrickable.com/media/sets/6540-1.jpg"
+    },
+    {
+        "set_num": "65407-1",
+        "name": "Little Robots Value Pack",
+        "year": "2003",
+        "theme_id": "661",
+        "num_parts": "0",
+        "img_url": "https://cdn.rebrickable.com/media/sets/65407-1.jpg"
+    },
+    {
+        "set_num": "654-1",
+        "name": "Crane Lorry",
+        "year": "1973",
+        "theme_id": "416",
+        "num_parts": "33",
+        "img_url": "https://cdn.rebrickable.com/media/sets/654-1.jpg"
+    },
+    {
+        "set_num": "6541-1",
+        "name": "Intercoastal Seaport",
+        "year": "1991",
+        "theme_id": "67",
+        "num_parts": "551",
+        "img_url": "https://cdn.rebrickable.com/media/sets/6541-1.jpg"
+    },
+    {
+        "set_num": "65415-1",
+        "name": "Bionicle Value Pack",
+        "year": "2003",
+        "theme_id": "324",
+        "num_parts": "0",
+        "img_url": "https://cdn.rebrickable.com/media/sets/65415-1.jpg"
+    },
+    {
+        "set_num": "65418-1",
+        "name": "Bionicle Value Pack",
+        "year": "2003",
+        "theme_id": "324",
+        "num_parts": "0",
+        "img_url": "https://cdn.rebrickable.com/media/sets/65418-1.jpg"
+    },
+    {
+        "set_num": "654-2",
+        "name": "1:87 Mercedes Flatbed Truck/Trailer",
+        "year": "1964",
+        "theme_id": "368",
+        "num_parts": "2",
+        "img_url": "https://cdn.rebrickable.com/media/sets/654-2.jpg"
+    },
+    {
+        "set_num": "6542-1",
+        "name": "Launch & Load Seaport",
+        "year": "1991",
+        "theme_id": "67",
+        "num_parts": "1078",
+        "img_url": "https://cdn.rebrickable.com/media/sets/6542-1.jpg"
+    },
+    {
+        "set_num": "9725-3",
+        "name": "ROBOLAB Amusement Park Set",
+        "year": "2005",
+        "theme_id": "520",
+        "num_parts": "306",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9725-3.jpg"
+    },
+    {
+        "set_num": "9730-1",
+        "name": "RoboSports",
+        "year": "1998",
+        "theme_id": "260",
+        "num_parts": "91",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9730-1.jpg"
+    },
+    {
+        "set_num": "9731-1",
+        "name": "Vision Command [RCX Digital Colour Camera]",
+        "year": "2000",
+        "theme_id": "260",
+        "num_parts": "139",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9731-1.jpg"
+    },
+    {
+        "set_num": "9732-1",
+        "name": "Extreme Creatures",
+        "year": "1998",
+        "theme_id": "260",
+        "num_parts": "149",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9732-1.jpg"
+    },
+    {
+        "set_num": "9735-1",
+        "name": "Robotics Discovery Set",
+        "year": "1999",
+        "theme_id": "260",
+        "num_parts": "390",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9735-1.jpg"
+    },
+    {
+        "set_num": "9736-1",
+        "name": "Exploration Mars",
+        "year": "1999",
+        "theme_id": "260",
+        "num_parts": "158",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9736-1.jpg"
+    },
+    {
+        "set_num": "9738-1",
+        "name": "Remote Control",
+        "year": "1998",
+        "theme_id": "260",
+        "num_parts": "1",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9738-1.jpg"
+    },
+    {
+        "set_num": "9742-1",
+        "name": "Photosynthesis Student Set",
+        "year": "2008",
+        "theme_id": "517",
+        "num_parts": "74",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9742-1.jpg"
+    },
+    {
+        "set_num": "9743-1",
+        "name": "Chromosomes - Student Set",
+        "year": "2003",
+        "theme_id": "517",
+        "num_parts": "136",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9743-1.jpg"
+    },
+    {
+        "set_num": "9747-1",
+        "name": "Robotics Invention System, Version 1.5",
+        "year": "1999",
+        "theme_id": "260",
+        "num_parts": "729",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9747-1.jpg"
+    },
+    {
+        "set_num": "9748-1",
+        "name": "Droid Developer Kit",
+        "year": "1999",
+        "theme_id": "261",
+        "num_parts": "658",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9748-1.jpg"
+    },
+    {
+        "set_num": "9749-1",
+        "name": "NXT Temperature Sensor",
+        "year": "2009",
+        "theme_id": "259",
+        "num_parts": "1",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9749-1.jpg"
+    },
+    {
+        "set_num": "9750-1",
+        "name": "LEGO Interface",
+        "year": "1986",
+        "theme_id": "532",
+        "num_parts": "4",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9750-1.jpg"
+    },
+    {
+        "set_num": "9751-1",
+        "name": "Control Lab Serial Interface & Adapter",
+        "year": "1995",
+        "theme_id": "530",
+        "num_parts": "2",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9751-1.jpg"
+    },
+    {
+        "set_num": "9752-1",
+        "name": "Technic Control Center II",
+        "year": "1996",
+        "theme_id": "532",
+        "num_parts": "15",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9752-1.jpg"
+    },
+    {
+        "set_num": "9753-1",
+        "name": "Technic Control Center",
+        "year": "1993",
+        "theme_id": "532",
+        "num_parts": "15",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9753-1.jpg"
+    },
+    {
+        "set_num": "9754-1",
+        "name": "Dark Side Developer Kit",
+        "year": "2000",
+        "theme_id": "261",
+        "num_parts": "578",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9754-1.jpg"
+    },
+    {
+        "set_num": "9755-1",
+        "name": "Temperature Sensor",
+        "year": "1999",
+        "theme_id": "260",
+        "num_parts": "1",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9755-1.jpg"
+    },
+    {
+        "set_num": "9756-1",
+        "name": "Rotation Sensor",
+        "year": "1999",
+        "theme_id": "260",
+        "num_parts": "1",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9756-1.jpg"
+    },
+    {
+        "set_num": "9757-1",
+        "name": "Touch Sensor with Cable",
+        "year": "1999",
+        "theme_id": "260",
+        "num_parts": "2",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9757-1.jpg"
+    },
+    {
+        "set_num": "9758-1",
+        "name": "Light Sensor 9V",
+        "year": "1999",
+        "theme_id": "260",
+        "num_parts": "1",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9758-1.jpg"
+    },
+    {
+        "set_num": "9761-1",
+        "name": "No Limits Challenge Kit",
+        "year": "2004",
+        "theme_id": "398",
+        "num_parts": "1437",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9761-1.jpg"
+    },
+    {
+        "set_num": "9762-1",
+        "name": "Ocean Odyssey Challenge Kit",
+        "year": "2005",
+        "theme_id": "398",
+        "num_parts": "1471",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9762-1.jpg"
+    },
+    {
+        "set_num": "9763-1",
+        "name": "Nano Quest Challenge Kit",
+        "year": "2006",
+        "theme_id": "398",
+        "num_parts": "1505",
+        "img_url": "https://cdn.rebrickable.com/media/sets/9763-1.jpg"
+    }
+]
