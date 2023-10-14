@@ -8,7 +8,7 @@
 *
 * Name: Supachai Ruknuy Student ID: 121707228 Date: 14-Oct-2023
 *
-* Published URL: ___________________________________________________________
+* Published URL: https://energetic-sun-hat-fawn.cyclic.app/
 *
 ********************************************************************************/
 
