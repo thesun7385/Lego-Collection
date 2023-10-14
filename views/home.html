@@ -3,116 +3,119 @@
 <html data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet"  href="/css/main.css"/> <!-- Direction home.html current file to main.css file -->
-    
-    <!-- Reference for Tailwind CSS -->
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/css/main.css"/> <!-- Direction home.html current file to main.css file -->    
     <title>Lego Collection</title> 
 </head>
+
 <body>
-
-
     <!--Responsive navbar-->
     <div class="navbar bg-base-100">
         <div class="flex-1">
-          <a class="btn btn-ghost normal-case text-xl">Lego </a>
+            <a class="btn btn-ghost normal-case text-xl" href="/">Lego Collection</a>
         </div>
-      
+
+         <!--Responsive navbar on the right-->
         <div class="navbar-center hidden sm:flex">
           <ul class="menu menu-horizontal px-1">
-            <li><a href="/">Lego Collections</a> </li>
             <li><a href="/about">About</a></li>
             <li>
               <details>
                 <summary>Lego Themes</summary>
-                <ul class="p-2 bg-base-100 right-0">
+                <ul class="p-2 bg-base-100 right-0"> 
                    <!-- Theme links -->
-                    <li><a href="/lego/sets?theme=Technic">Technic</a></li>
-                    <li><a href="/lego/sets?theme=Competition">Competition</a></li>
-                    <li><a href="/lego/sets?theme=RoboRiders">RoboRiders</a></li>
+                   <li><a href="/lego/sets?theme=Technic">Technic</a></li>
+                   <li><a href="/lego/sets?theme=Classic Town">Classic Town</a></li>
+                   <li><a href="/lego/sets?theme=Bionicle">Bionicle</a></li>
                 </ul>
               </details>
             </li>
+
           </ul>
         </div>
-      </div>
+    </div>
 
-      <!--Main-->
-      
 
-        <!-- "Hero" DaisyUI component -->
-        <div class="container mx-auto p-4">
-      
-            <div class="hero bg-blue-500 py-10 px-4 rounded-lg text-center text-white">
-                    <h1 class="text-4xl font-bold">Welcome to Our Collections</h1>
+    <!--Main-->
+    <div class="container mx-auto">   
+        <div class="hero bg-base-200 rounded-lg p-6">
+            <div class="hero-content text-center ">
+              <div class="max-w-md">
+                <h1 class="text-5xl font-bold">Welcome</h1>                    
+                        <p class="py-6">The world of Lego is here! Explore more collections below</p>
+                        <a href="/lego/sets" class="btn btn-primary">Get Started Now</a>
+              </div>
             </div>
-        </div>
-
-        <div class="hero p-4 rounded-lg text-center text-white">
-            <button class="btn btn-primary">
-                <a href="/lego/sets">Explore All Collections</a>
-            </button>
-        </div>
- 
-
-           
-        
+          </div>
 
 
-    <!--Responsive grid 3 columne-->
-    <div class="container mx-auto p-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <br>
+    
+        <!----------------- Lego Cards ------------------------->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                    <!-- Lego Set Card 01 -->
-                    <div class="legoSet-1">
-                        <figure>
-                            <img class="lego-gears" src="https://cdn.rebrickable.com/media/sets/001-1.jpg" alt="gears"/>
-                        </figure>
-                        <div class="lego-info">
-                            <h2 class="lego-name">Name: Gears</h2>
-                            <p>This set was released in America (USA/CAN) by Samsonite 
-                                in 1965. It was re-released in 1969 as an educational 
-                                set (322-4). It was never released in Europe.</p>
-                            <button class="btn btn-primary">
-                                <a href="/lego/sets/001-1">View</a>
-                            </button>
-                        </div>
+           <!-- Lego Set Card 01 -->
+            <div>
+                <div class="card bg-base-100 shadow-xl">
+                  <figure>
+                    <img src="https://cdn.rebrickable.com/media/sets/001-1.jpg" alt="gears">
+                  </figure>
+                  <div class="card-body">
+                    <h2 class="card-title">Gears</h2>
+                    <p>This set was released in America (USA/CAN) by Samsonite 
+                        in 1965. It was re-released in 1969 as an educational 
+                        set (322-4). It was never released in Europe.</p>
+                    <div class="card-actions justify-end">
+                      <a href="/lego/sets/001-1" class="btn btn-primary">View</a>
                     </div>
-        
-                    <!-- Lego Set Card 02 -->
-                    <div class="legoSet-2">
-                        <figure>
-                                <img class="lego-robo" src="https://cdn.rebrickable.com/media/sets/9730-1.jpg" alt="rebo" />
-                            </figure>
-                            <div class="lego-info">
-                                <h2 class="lego-name">Name: RoboSports</h2>
-                                <p>There are 37 parts in this inventory, with 91 total quantity.
-                                The approximate cost of these parts is CA$155.33</p>
-                                <button class="btn btn-primary">
-                                    <a href="/lego/sets/9730-1">View</a>
-                                </button>
-                            </div>
-                        </div>
-        
-                        <!-- Lego Set Card 03 -->
-                        <div class="legoSet-6540-1">
-                            <figure>
-                                <img class="lego-gears" src="https://cdn.rebrickable.com/media/sets/6540-1.jpg" alt="police" />
-                            </figure>
-                            <div class="lego-info">
-                                <h2 class="lego-name">Name: Pier Police</h2>
-                                <p>There are 154 parts in this inventory, 
-                                    with 338 total quantity. The approximate 
-                                    cost of these parts is CA$875.94</p>
-                                <button class="btn btn-primary">
-                                    <a href="/lego/sets/6540-1">View</a>
-                                </button>
-                            </div>
-                        </div> 
-                    </div>
+                  </div>
                 </div>
+              </div>
 
- 
+
+              <!-- Lego Set Card 02 -->
+            <div>
+                <div class="card bg-base-100 shadow-xl">
+                  <figure>
+                    <img src="https://cdn.rebrickable.com/media/sets/9730-1.jpg" alt="rebo">
+                  </figure>
+                  <div class="card-body">
+                    <h2 class="card-title">RoboSports</h2>
+                    <p>There are 37 parts in this inventory, with 
+                        91 total quantity. The approximate cost 
+                        of these parts is CA$155.33</p>
+                    <div class="card-actions justify-end">
+                      <a href="/lego/sets/9730-1" class="btn btn-primary">View</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            <!-- Lego Set Card 03 -->
+            <div>
+                <div class="card bg-base-100 shadow-xl">
+                  <figure>
+                    <img src="https://cdn.rebrickable.com/media/sets/6540-1.jpg" alt="police">
+                  </figure>
+                  <div class="card-body">
+                    <h2 class="card-title">Pier Police</h2>
+                    <p>There are 154 parts in this inventory, with 338 total quantity. 
+                        The approximate cost of these parts is CA$875.94</p>
+                    <div class="card-actions justify-end">
+                      <a href="/lego/sets/6540-1" class="btn btn-primary">View</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>    
+    </div> <!-- End of container -->
+
+
+   
+
+    
+
 </body>
 
 </html>

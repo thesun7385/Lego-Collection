@@ -1,1 +1,1 @@
-legoData.getAllsets();
+        .then(set => {

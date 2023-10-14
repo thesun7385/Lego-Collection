@@ -1,8 +1,9 @@
 
 <!DOCTYPE html>
-<html data-theme="dark">
+<html data-theme="light">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/main.css"> <!-- Reference the compiled Tailwind CSS -->
     <title>404 - Page Not Found</title> <!-- Set the title to "404 - Page Not Found" -->
@@ -10,23 +11,22 @@
 <body>
 
      <!--Responsive navbar-->
-     <div class="navbar bg-base-100">
+    <div class="navbar bg-base-100">
       <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">Lego </a>
+          <a class="btn btn-ghost normal-case text-xl" href="/">Lego Collection</a>
       </div>
     
       <div class="navbar-center hidden sm:flex">
         <ul class="menu menu-horizontal px-1">
-          <li><a href="/">Lego Collection</a> </li>
           <li><a href="/about">About</a></li>
           <li>
             <details>
               <summary>Lego Themes</summary>
               <ul class="p-2 bg-base-100 right-0">
                  <!-- Theme links -->
-                  <li><a href="/lego/sets?theme=Technic">Technic</a></li>
-                  <li><a href="/lego/sets?theme=Competition">Competition</a></li>
-                  <li><a href="/lego/sets?theme=RoboRiders">RoboRiders</a></li>
+                 <li><a href="/lego/sets?theme=Technic">Technic</a></li>
+                 <li><a href="/lego/sets?theme=Classic Town">Classic Town</a></li>
+                 <li><a href="/lego/sets?theme=Bionicle">Bionicle</a></li>
               </ul>
             </details>
           </li>
@@ -35,14 +35,15 @@
     </div>
 
 
+
     <!-- Main content -->
     <div class="container mx-auto p-4">
         <!-- "Hero" DaisyUI component for 404 Page -->
-        <div class="hero py-10 px-4 rounded-lg text-center text-white">
+        <div class="hero py-10 px-4 rounded-lg text-center text-black">
             <h1 class="text-4xl font-bold">404 - Page Not Found</h1>
         </div>
 
-        <div class="hero py-10 px-4 rounded-lg text-center text-white">
+        <div class="hero py-10 px-4 rounded-lg text-center text-black">
           <h1 class="text-4xl font-bold">Hmmm… can't reach this page</h1>       
       </div>
 
