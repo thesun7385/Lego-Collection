@@ -1,12 +1,12 @@
 /********************************************************************************
-* WEB322 – Assignment 03
+* WEB322 – Assignment 04
 *
 * I declare that this assignment is my own work in accordance with Seneca's
 * Academic Integrity Policy:
 *
 * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 *
-* Name: Supachai Ruknuy Student ID: 121707228 Date: 14-Oct-2023
+* Name: Supachai Ruknuy Student ID: 121707228 Date: 31-Oct-2023
 *
 * Published URL: https://energetic-sun-hat-fawn.cyclic.app/
 *
@@ -19,52 +19,49 @@ const path = require("path");
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
-////// Mark public folder as static///////////
+// Set static folder
 app.use(express.static(__dirname + '/public'));
 
+// User ejs template
+app.set('view engine','ejs');
+
+// Initialize lego sets
 legoData.Initialize();
 
 
-///// Update for Assignment 3 ///
-
-// Update route for homepage
+// Route to homepage.ejs
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "/views/home.html"));
+    res.render("home");
 });
 
-// Update route for about
+
+// Update route for about.ejs
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, "/views/about.html"));
+    res.render("about");
 });
 
-// // Update route for 404 error
-// app.get('/404', (req, res) => {
-//     res.sendFile(__dirname + '/views/404.html');
-// });
 
-// This route is responsible for responding with all of the Lego sets
-app.get('/lego/sets',(req,res) => {
+// Update route for sets.ejs
+app.get('/lego/sets', (req, res) => {
+ 
     const theme = req.query.theme; // query parameter
 
-    if(theme)
-    {
+    if (theme) {
         legoData.getSetsByTheme(theme)
-            .then(sets=>{
-                res.json(sets);
+            .then(legoSets => {
+                // Render the 'sets.ejs' template with the 'legoSets' data
+                res.render("sets", {sets: legoSets});
+                //console.log(legoSets); // see theme collection
             })
-            .catch(error=>{
-                res.status(404).send(error); // return error
-            });
-    }else{
+    } else {
         legoData.getAllsets()
-            .then(sets=>{
-                res.json(sets);
-            })
-            .catch(error=>{
-                res.status(404).send(error);
-            });
+            .then(legoSets => {
+                // Render the 'sets.ejs' template with the 'legoSets' data
+                res.render("sets", {sets: legoSets});
+                //console.log(legoSets); // see the all collections
+            })         
     }
-
+  
 });
 
 
@@ -73,27 +70,25 @@ app.get('/lego/sets/:set_num', (req, res) => {
     const setNum = req.params.set_num;
 
     legoData.getSetByNum(setNum)
-        .then(set => {
-            if (set) {
-                res.json(set);
+        .then(legoSet => {
+            if (legoSet) {
+                res.render("set", {set: legoSet});
+                //console.log(legoSet); // see the
             } else {
                 res.status(404).send('Lego set not found');
             }
         })
         .catch(error => {
-            res.status(404).send(error);
+            // Handle any other errors that may occur during data retrieval
+            res.render("404");
         });
 });
 
 
-
-
-// // Add support for a custom "404 error".
+// for a custom 404.js to handle error
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+    res.render("404");
 });
-
-
 
 
 // Get start the server
