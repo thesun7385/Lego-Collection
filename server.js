@@ -53,13 +53,21 @@ app.get('/lego/sets', (req, res) => {
                 res.render("sets", {sets: legoSets});
                 //console.log(legoSets); // see theme collection
             })
+            .catch(error => {
+                // Handle any other errors that may occur during data retrieval
+                res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
+            });
     } else {
         legoData.getAllsets()
             .then(legoSets => {
                 // Render the 'sets.ejs' template with the 'legoSets' data
                 res.render("sets", {sets: legoSets});
                 //console.log(legoSets); // see the all collections
-            })         
+            })
+            .catch(error => {
+                // Handle any other errors that may occur during data retrieval
+                res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
+            });         
     }
   
 });
@@ -75,19 +83,19 @@ app.get('/lego/sets/:set_num', (req, res) => {
                 res.render("set", {set: legoSet});
                 //console.log(legoSet); // see the
             } else {
-                res.status(404).send('Lego set not found');
+                res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
             }
         })
         .catch(error => {
             // Handle any other errors that may occur during data retrieval
-            res.render("404");
+            res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
         });
 });
 
 
 // for a custom 404.js to handle error
 app.use((req, res) => {
-    res.render("404");
+    res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
 });
 
 
