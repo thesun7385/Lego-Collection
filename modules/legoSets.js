@@ -1,149 +1,302 @@
 /********************************************************************************
-* WEB322 – Assignment 02
+* WEB322 – Assignment 05
 *
 * I declare that this assignment is my own work in accordance with Seneca's
 * Academic Integrity Policy:
 *
 * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 *
-* Name: Supachai Ruknuy Student ID: 121707228 Date:28-Sep-2023
+* Name: Supachai Ruknuy Student ID: 121707228 Date:14-Nov-2023
 *
 ********************************************************************************/
+///////// Add dotenv 
+// This will allow us to access the DB_USER, DB_DATABASE
+require('dotenv').config();
+const Sequelize = require('sequelize');
 
-// Read both files
-const setData = require("../data/setData");
-const themeData = require("../data/themeData");
+//  Read both files - No need fo AS5
+//  const setData = require("../data/setData");
+//  const themeData = require("../data/themeData");
+//  let sets = [];
 
-// Create an empty array
-let sets = [];
+//////////////// Set up sequelize to point to our postgres database//////
+const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  dialect: 'postgres',
+  port: 5432,
+  dialectOptions: {
+    ssl: { rejectUnauthorized: false },
+  },
+  query: { raw: true },
+});
 
-/////////////////// Required Functions //////////////////////
 
-//This function is to fill the "sets" array
-function Initialize()
-{
-    return new Promise((resolve, reject)=> {
+///////////////// Define the theme and set obejct ////////////////////
+const Theme = sequelize.define(
+  'Theme', 
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: Sequelize.STRING, 
+    },
+  }, {
+    createdAt: false, // disable createdAt
+    updatedAt: false, // disable updatedAt
+  });
 
-        // Loop through each element in the setData object
-    setData.forEach(set => 
-        {
-            // Find theme data based on theme_id
-            const theme = themeData.find(theme => theme.id === set.theme_id);
-            
-            // Validate result, adding to the theme attribute
-            if(theme)
-            {
-                set.theme = theme.name;
-            }
-    
-            // Push the new element to the object
-            sets.push(set);
-    
-        });
+///////////////// Define set /////////////////////
+const Set = sequelize.define(
+  'Set', 
+  {
+    set_num: {
+      type: Sequelize.STRING,
+      primaryKey: true,
+    },
+    name: {
+      type: Sequelize.STRING,
+    },
+    year: {
+      type: Sequelize.INTEGER,
+    },
+    theme_id: {
+      type: Sequelize.INTEGER,
+    },
+    num_parts: {
+      type: Sequelize.INTEGER,
+    },  
+    img_url: {
+      type: Sequelize.STRING,
+    },
+  }, {
+    createdAt: false, // disable createdAt
+    updatedAt: false, // disable updatedAt
+  });
 
-        // Resolve the promise with no data
-        resolve();
+///////////// Create association between theme and set and theme
+Set.belongsTo(Theme, { foreignKey:'theme_id'});
 
-    });    
 
+
+/////////////////////////////// Required Functions /////////////////////////////////////
+
+// This function initializes sequelize and synchronizes the database
+function Initialize() {
+  return sequelize.sync()
+      .then(() => {
+          console.log('Database synced successfully.');
+      })
+      .catch((err) => {
+          throw new Error(`Error: Unable to sync the database - ${err.message}`);
+      });
 }
 
 
-
-// This function simply returns the complete "sets" array
-function getAllsets()
-{ 
-    return new Promise((resolve, reject)=>{
-
-        if(sets.length ===0)
-        {
-            reject("The sets array is empty. Please call initialize the array")
-        }
-        else
-        {
-             // Resolve the promise the sets
-             resolve(sets);
-        }
-
-    })
+// This function simply returns all sets from the database
+function getAllsets() {
+  return new Promise((resolve, reject) => {
+    Set.findAll({ include: [Theme],raw : true ,
+      nest : true })
+      .then((sets) => {
+        resolve(sets);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 }
+
 
 // This function will return a specific "set" that matched with the setNum
-function getSetByNum(setNum)
-{
-    return new Promise((resolve, reject) => {
-
-        // Find the set_num
-        const foundSetNum = sets.find(set => set.set_num == setNum);
-
-        if(foundSetNum)
-        {
-            // Resolve with the mathcing result
-            resolve(foundSetNum);
-
-        }else{
-            // Reject the result
-            reject(`Error: Not found the set with set_num: ${setNum}`);
-
-    }
-
-    });
-}
-
-
-// This function will return a specific "set" that matched with the theme
-function getSetsByTheme(theme)
-{
-    return new Promise((resolve, reject) => {
-
-         // Convert to lower case
-        const themeLowerCase = theme.toLowerCase();
-
-        // Use the filter method to find sets matching the theme
-        const matchedResult = sets.filter(set => 
-        {
-            // Convert the set to lower case 
-            const setLowerCase = set.theme.toLowerCase();
-
-            // Check the letter
-            return setLowerCase.includes(themeLowerCase);
-
-    });
-
-        if(matchedResult.length>0)
-        {
-            // Resolve with the mathcing result
-            resolve(matchedResult);
-        }else{
-
-            // Reject the result
-            reject(`Error: Not found the set with theme: ${theme}`);
-
+function getSetByNum(setNum) {
+  return new Promise((resolve, reject) => {
+    Set.findAll({
+      where: { set_num: setNum },raw : true ,
+      nest : true 
+    })
+      .then((sets) => {
+        if (sets.length > 0) {
+          // Resolve with the first element of the returned array
+          resolve(sets[0]);
+        } else {
+          // Reject the result
+          reject(`Error: Unable to find requested set with set_num: ${setNum}`);
         }
-  
-    });
-   
+      })
+      .catch((error) => {
+        // Reject the result with the error
+        reject(error);
+      });
+  });
 }
+
+
+// This function will return sets that match the theme from the database
+function getSetsByTheme(theme) {
+  return Set.findAll({
+    include: [Theme],
+    where: { '$Theme.name$': { [Sequelize.Op.iLike]: `%${theme}%` } },raw : true ,
+    nest : true
+  })
+    .then((sets) => {
+      if (sets.length > 0) {
+        return sets; // Resolve with the matching result
+      } else {
+        throw new Error(`Error: Unable to find requested sets with theme: ${theme}`);
+      }
+    })
+    .catch((error) => {
+      throw error; // Reject the result with the error
+    });
+}
+
+////////////////////////////// For assigment 5 //////////////////////////////////////
+
+// Function to add a new set
+function addSet(setData) 
+{
+  return Set.create(setData)
+    .then(() => {
+      // Resolve the promise if the set is created successfully
+      return Promise.resolve();
+    })
+    .catch((err) => {
+      // Reject the promise with a human-readable error message
+      return Promise.reject(`Error: Unable to add the set - ${err.errors[0].message}`);
+    });
+}
+
+// Function to get all themes
+function getAllThemes() {
+  return Theme.findAll()
+    .then((themes) => {
+      // Resolve the promise with the array of themes
+      return Promise.resolve(themes);
+    })
+    .catch((err) => {
+      // Reject the promise with the error message
+      return Promise.reject(`Error: Unable to get themes - ${err.message}`);
+    });
+}
+
+
+// Function to edit a set
+function editSet(setNum, setData) {
+  return Set.update(setData, {
+      where: { set_num: setNum },
+      raw: true,
+      nest: true
+  })
+      .then((result) => {
+          if (result[0] > 0) {
+              // Set was updated successfully
+              return Promise.resolve();
+          } else {
+              // No set was updated, reject with an error message
+              return Promise.reject(new Error(`Error: Unable to find set with set_num: ${setNum}`));
+          }
+      })
+      .catch((error) => {
+          // Reject the Promise with the first error message
+          return Promise.reject(new Error(error.errors[0].message));
+      });
+}
+
+
+// Function to delete
+function deleteSet(setNum) {
+  return Set.destroy({
+    where: { set_num: setNum },
+    raw: true,
+    nest: true
+  })
+    .then((result) => {
+      if (result > 0) {
+        // Set was deleted successfully
+        return Promise.resolve();
+      } else {
+        // No set was deleted, reject with an error message
+        return Promise.reject(new Error(`Error: Unable to find set with set_num: ${setNum}`));
+      }
+    })
+    .catch((error) => {
+      // Reject the Promise with the first error message
+      return Promise.reject(new Error(error.errors[0].message));
+    });
+}
+
 
 // Export functions as a module
-module.exports = {Initialize, getAllsets, getSetByNum, getSetsByTheme};
+module.exports = { Initialize, getAllsets, getSetByNum, 
+                   getSetsByTheme, addSet, getAllThemes
+                   ,editSet,deleteSet};
 
 
-// Test functions [result: OK]
- /* 
-//Load all sets
-Initialize();
+// // Test functions 
 
-//Get all set
-const allset= getAllsets();
-console.log(allset);
+// // Load all sets [result: OK]
+// Initialize();
 
-// get set_num
-const selectNum = getSetByNum("6539-1");
-console.log(selectNum);
+// Test getAllsets() [result: OK]
+// getAllsets()
+//   .then((sets) => {
+//     // Process sets here
+//     console.log(sets);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
 
-// get theme
-const selectTheme = getSetsByTheme("Technic");
-console.log(selectTheme);
-*/
 
+// Test getSet by num  [result: OK]
+// getSetByNum("001-1")
+//   .then((sets) => {
+//     // Process sets here
+//     console.log(sets);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+
+// Test getSetsByTheme(theme) [result: OK]
+// getSetsByTheme("Technic")
+//   .then((selectTheme) => {
+//     console.log(selectTheme);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+
+// // Test getAllThemes [result: OK]
+// getAllThemes()
+//   .then((alltheme) => {
+//     console.log(alltheme);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+// Test setedit [result: OK]
+// const setNum = "9763-1";
+// const setData =   {
+//   "name": "Nano Quest Challenge Kit",
+//   "year": "2023",
+//   "theme_id": "398",
+//   "num_parts": "1505",
+//   "img_url": "https://cdn.rebrickable.com/media/sets/9763-1.jpg"
+// }
+
+// editSet(setNum, setData)
+//     .then(() => {
+//         // Handle success
+//         console.log('Set updated successfully!');
+//     })
+//     .catch((error) => {
+//         // Handle error
+//         console.error(error.message);
+//     });

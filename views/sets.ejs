@@ -25,7 +25,7 @@
             Click the theme to filter by themes such as: 
             <a href="/lego/sets?theme=Technic" class="btn btn-primary btn-xs">Technic</a> 
             <a href="/lego/sets?theme=Classic Town" class="btn btn-primary btn-xs">Classic Town</a>  
-            <a href="/lego/sets?theme=Bionicle"" class="btn btn-primary btn-xs">Bionicle</a> </p>
+            <a href="/lego/sets?theme=Bionicle" class="btn btn-primary btn-xs">Bionicle</a> </p>
 
         </div>
       </div>
@@ -34,7 +34,7 @@
     <br/>
 
  <!--Collection table-->
- 
+
  <div class="overflow-x-auto overflow-y-hidden">
     <table class="table table-zebra">
       
@@ -49,11 +49,11 @@
            </td>
 
             <td> <!-- Get name and theme-->
-                <%= set.name %> | <a href="/lego/sets?theme=<%= set.theme %>" class="btn  mt-2 btn-xs"><%= set.name %></a>
+                <%= set.name %> | <a href="/lego/sets?theme=<%= set.theme %>" class="btn  mt-2 btn-xs"><%= set.name %></a> <!-- replace set.Theme.name instead of set.theme-->
             </td>
 
             <!-- Get year and detail-->
-            <td><span class="font-bold">Year: </span> <%= set.year %> - <span class="font-bold">Parts:</span> <%= set. num_parts %></td>
+            <td><span class="font-bold">Year: </span> <%= set.year %> - <span class="font-bold">Parts:</span> <%= set.num_parts %></td>
             <th>
               <a href="/lego/sets/<%= set.set_num %>" class="btn btn-xs">details</a>
             </th>
