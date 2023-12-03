@@ -38,20 +38,15 @@ let User;
 // Export the function to initialize the schema
 function initialize() {
   return new Promise(function (resolve, reject) {
-    moongose
-      .connect(process.env.MONGODB, {
-        // Remove the deprecated options
-        // useNewUrlParser: true,
-        // useUnifiedTopology: true,
-      })
-      .then(() => {
-        User = moongose.model("users", userSchema);
-        console.log("Mongo DB successfully connected !!");
-        resolve();
-      })
-      .catch((err) => {
-        reject(err); // reject the promise with the provided error
-      });
+    let db = moongose.createConnection(process.env.MONGODB);
+    db.on("error", (err) => {
+      reject(err); // reject the promise with the provided error
+    });
+    db.once("open", () => {
+      User = db.model("users", userSchema);
+      console.log("Mongo DB successfully connected !!");
+      resolve();
+    });
   });
 }
 
