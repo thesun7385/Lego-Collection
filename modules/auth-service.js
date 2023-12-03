@@ -40,8 +40,9 @@ function initialize() {
   return new Promise(function (resolve, reject) {
     moongose
       .connect(process.env.MONGODB, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+        // Remove the deprecated options
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true,
       })
       .then(() => {
         User = moongose.model("users", userSchema);
