@@ -20,7 +20,7 @@ const authData = require("./modules/auth-service");
 const clientSessions = require("client-sessions");
 const express = require("express");
 const app = express();
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT || 3000;
 
 // Middleware Configuration
 app.use(express.urlencoded({ extended: true }));
