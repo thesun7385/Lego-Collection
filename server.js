@@ -43,17 +43,6 @@ app.set("view engine", "ejs");
 // legoData.Initialize();
 // authData.initialize();
 // Initialize lego sets
-legoData
-  .Initialize()
-  .then(authData.initialize)
-  .then(function () {
-    app.listen(HTTP_PORT, function () {
-      console.log(`app listening on: ${HTTP_PORT}`);
-    });
-  })
-  .catch(function (err) {
-    console.log(`unable to start server: ${err}`);
-  });
 
 // Clinet session middleware
 app.use((req, res, next) => {
@@ -313,3 +302,14 @@ app.use((req, res) => {
 // app.listen(HTTP_PORT, () => {
 //   console.log(`server listening on: ${HTTP_PORT}`);
 // });
+legoData
+  .Initialize()
+  .then(authData.initialize)
+  .then(function () {
+    app.listen(HTTP_PORT, function () {
+      console.log(`app listening on: ${HTTP_PORT}`);
+    });
+  })
+  .catch(function (err) {
+    console.log(`unable to start server: ${err}`);
+  });
